@@ -7,7 +7,6 @@ issue_tracker: https://github.com/bittudev-coder/youtube_details/issues
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
-  # Flutter भी सपोर्ट होगा अगर future में use हुआ
 
 dependencies:
   http: ^1.6.0
@@ -22,7 +21,6 @@ topics:
   - scraper
   - videos
   - shorts
-  - posts
 
 screenshots:
   - description: "Fetch YouTube Data without API Key"
