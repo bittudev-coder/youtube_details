@@ -29,6 +29,12 @@
 library;
 
 export 'src/youtube_details_base.dart';
+export 'src/youtube_details_base.dart';
+export 'src/Model/channel_details_model.dart';
+export 'src/Model/posts_model.dart';
+export 'src/Model/shorts_model.dart';
+export 'src/Model/video_model.dart';
+export 'src/Model/videos_model.dart';
 
 /// Data models
 export 'src/Model/channel_details_model.dart';
