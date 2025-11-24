@@ -61,25 +61,25 @@ class ShortModel {
   /// }
   /// ```
   factory ShortModel.fromJson(Map<String, dynamic> json) => ShortModel(
-    videoId: json['videoId'],
-    title: json['title'],
-    views: json['views'],
-    thumbnail: json['thumbnail'],
-    width: json['width'],
-    height: json['height'],
-    entityId: json['entityId'],
-    accessibilityText: json['accessibilityText'],
-  );
+        videoId: json['videoId'],
+        title: json['title'],
+        views: json['views'],
+        thumbnail: json['thumbnail'],
+        width: json['width'],
+        height: json['height'],
+        entityId: json['entityId'],
+        accessibilityText: json['accessibilityText'],
+      );
 
   /// Converts this Shorts model into a JSON map.
   Map<String, dynamic> toJson() => {
-    'videoId': videoId,
-    'title': title,
-    'views': views,
-    'thumbnail': thumbnail,
-    'width': width,
-    'height': height,
-    'entityId': entityId,
-    'accessibilityText': accessibilityText,
-  };
+        'videoId': videoId,
+        'title': title,
+        'views': views,
+        'thumbnail': thumbnail,
+        'width': width,
+        'height': height,
+        'entityId': entityId,
+        'accessibilityText': accessibilityText,
+      };
 }

@@ -48,7 +48,8 @@ class YouTubeDetails {
     final html = response.body;
 
     final patterns = [
-      RegExp(r'ytInitialData"\s*:\s*(\{.*?\})\s*,\s*"ytInitialPlayerResponse"', dotAll: true),
+      RegExp(r'ytInitialData"\s*:\s*(\{.*?\})\s*,\s*"ytInitialPlayerResponse"',
+          dotAll: true),
       RegExp(r'ytInitialData"\s*=\s*(\{.*?\});', dotAll: true),
       RegExp(r'var ytInitialData\s*=\s*(\{.*?\});', dotAll: true),
     ];
@@ -86,8 +87,9 @@ class YouTubeDetails {
     final title = pageHeader['pageTitle'];
 
     final imageSources = pageHeader?['content']?['pageHeaderViewModel']
-    ?['image']?['decoratedAvatarViewModel']?['avatar']
-    ?['avatarViewModel']?['image']?['sources'] ?? [];
+                ?['image']?['decoratedAvatarViewModel']?['avatar']
+            ?['avatarViewModel']?['image']?['sources'] ??
+        [];
 
     String? profileImage;
     if (imageSources is List && imageSources.isNotEmpty) {
@@ -95,8 +97,8 @@ class YouTubeDetails {
     }
 
     final meta = pageHeader?['content']?['pageHeaderViewModel']?['metadata']
-    ?['contentMetadataViewModel']?['metadataRows']?[1]?['metadataParts']
-    ?[0]?['text']?['content'];
+            ?['contentMetadataViewModel']?['metadataRows']?[1]?['metadataParts']
+        ?[0]?['text']?['content'];
 
     final output = {
       'title': title,
@@ -126,7 +128,9 @@ class YouTubeDetails {
       final html = response.body;
 
       final patterns = [
-        RegExp(r'ytInitialData"\s*:\s*(\{.*?\})\s*,\s*"ytInitialPlayerResponse"', dotAll: true),
+        RegExp(
+            r'ytInitialData"\s*:\s*(\{.*?\})\s*,\s*"ytInitialPlayerResponse"',
+            dotAll: true),
         RegExp(r'ytInitialData"\s*=\s*(\{.*?\});', dotAll: true),
         RegExp(r'var ytInitialData\s*=\s*(\{.*?\});', dotAll: true),
       ];
@@ -148,7 +152,8 @@ class YouTubeDetails {
 
       Map<String, dynamic>? data = jsonDecode(jsonString);
 
-      final tabs = data!['contents']?['twoColumnBrowseResultsRenderer']?['tabs'];
+      final tabs =
+          data!['contents']?['twoColumnBrowseResultsRenderer']?['tabs'];
       if (tabs == null) {
         return videoList;
       }
@@ -164,7 +169,8 @@ class YouTubeDetails {
         return videoList;
       }
 
-      final contents = finalTab['content']?['richGridRenderer']?['contents'] ?? [];
+      final contents =
+          finalTab['content']?['richGridRenderer']?['contents'] ?? [];
 
       for (var item in contents) {
         var v = item?['richItemRenderer']?['content']?['videoRenderer'];
@@ -212,7 +218,9 @@ class YouTubeDetails {
       final html = response.body;
 
       final patterns = [
-        RegExp(r'ytInitialData"\s*:\s*(\{.*?\})\s*,\s*"ytInitialPlayerResponse"', dotAll: true),
+        RegExp(
+            r'ytInitialData"\s*:\s*(\{.*?\})\s*,\s*"ytInitialPlayerResponse"',
+            dotAll: true),
         RegExp(r'ytInitialData"\s*=\s*(\{.*?\});', dotAll: true),
         RegExp(r'var ytInitialData\s*=\s*(\{.*?\});', dotAll: true),
       ];
@@ -247,10 +255,12 @@ class YouTubeDetails {
         return shortsList;
       }
 
-      final contents = shortsTab['content']?['richGridRenderer']?['contents'] ?? [];
+      final contents =
+          shortsTab['content']?['richGridRenderer']?['contents'] ?? [];
 
       for (var item in contents) {
-        final s = item?['richItemRenderer']?['content']?['shortsLockupViewModel'];
+        final s =
+            item?['richItemRenderer']?['content']?['shortsLockupViewModel'];
         if (s == null) {
           continue;
         }
@@ -259,7 +269,8 @@ class YouTubeDetails {
 
         shortsList.add(
           ShortModel(
-            videoId: s['onTap']?['innertubeCommand']?['reelWatchEndpoint']?['videoId'],
+            videoId: s['onTap']?['innertubeCommand']?['reelWatchEndpoint']
+                ?['videoId'],
             title: s['overlayMetadata']?['primaryText']?['content'],
             views: s['overlayMetadata']?['secondaryText']?['content'],
             thumbnail: thumb?['url'],
@@ -296,7 +307,9 @@ class YouTubeDetails {
       final html = response.body;
 
       final patterns = [
-        RegExp(r'ytInitialData"\s*:\s*(\{.*?\})\s*,\s*"ytInitialPlayerResponse"', dotAll: true),
+        RegExp(
+            r'ytInitialData"\s*:\s*(\{.*?\})\s*,\s*"ytInitialPlayerResponse"',
+            dotAll: true),
         RegExp(r'ytInitialData"\s*=\s*(\{.*?\});', dotAll: true),
         RegExp(r'var ytInitialData\s*=\s*(\{.*?\});', dotAll: true),
       ];
@@ -331,22 +344,28 @@ class YouTubeDetails {
       }
 
       final contents = postsTab['content']['sectionListRenderer']['contents'][0]
-      ['itemSectionRenderer']['contents'];
+          ['itemSectionRenderer']['contents'];
 
       for (var item in contents) {
-        final postData = item['backstagePostThreadRenderer']?['post']?['backstagePostRenderer'];
+        final postData = item['backstagePostThreadRenderer']?['post']
+            ?['backstagePostRenderer'];
         if (postData == null) {
           continue;
         }
 
         final id = postData['postId'];
         final author = postData['authorText']?['runs']?[0]?['text'] ?? '';
-        final channelId = postData['authorEndpoint']?['browseEndpoint']?['browseId'] ?? '';
+        final channelId =
+            postData['authorEndpoint']?['browseEndpoint']?['browseId'] ?? '';
         final content = postData['contentText']?['runs']?[0]?['text'] ?? '';
-        final published = postData['publishedTimeText']?['runs']?[0]?['text'] ?? '';
+        final published =
+            postData['publishedTimeText']?['runs']?[0]?['text'] ?? '';
         final likes = postData['voteCount']?['simpleText'] ?? '0';
 
-        final comments = postData['actionButtons']?['commentActionButtonsRenderer']?['replyButton']?['buttonRenderer']?['text']?['simpleText'] ?? '0';
+        final comments = postData['actionButtons']
+                    ?['commentActionButtonsRenderer']?['replyButton']
+                ?['buttonRenderer']?['text']?['simpleText'] ??
+            '0';
 
         String type = 'text';
         Media? mediaObj;
@@ -368,7 +387,9 @@ class YouTubeDetails {
         } else if (attachment?['backstageImageRenderer'] != null) {
           final img = attachment['backstageImageRenderer'];
           final thumbList = img['image']?['thumbnails'];
-          String thumbUrl = thumbList != null && thumbList.isNotEmpty ? thumbList.last['url'] : '';
+          String thumbUrl = thumbList != null && thumbList.isNotEmpty
+              ? thumbList.last['url']
+              : '';
 
           type = 'image';
 

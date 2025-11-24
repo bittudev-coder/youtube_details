@@ -114,7 +114,7 @@ class VideosModel {
     return decoded
         .map<VideosModel>(
           (e) => VideosModel.fromJson(e as Map<String, dynamic>),
-    )
+        )
         .toList();
   }
 

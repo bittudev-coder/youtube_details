@@ -1,3 +1,10 @@
+## 1.0.2 — Code Formatting Improvements 🧹
+
+- Applied `dart format` across the entire project
+- Cleaned up unused imports and improved code style
+- Removed redundant exports and optimized library structure
+- Improved consistency in indentation and spacing
+
 ## 1.0.1 — Minor Fixes & Updates 🔧
 
 - Fixed string quote consistency in model classes and `YouTubeDetails`
